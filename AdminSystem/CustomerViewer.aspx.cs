@@ -10,11 +10,15 @@ public partial class _1Viewer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        /*Create a new instance of the class
-        clsOrder AnOrder = new clsOrder();
+        //Create a new instance of the class
+        clsCustomer ACustomer = new clsCustomer();
         //get the data from the session object
-        AnOrder = (clsOrder)Session["AnOrder"];
+        ACustomer = (clsCustomer)Session["ACustomer"];
         //Display the house number on the page
-        Response.Write(AnOrder.OrderID);*/
+        Response.Write(ACustomer.CustomerID);
+        Response.Write(ACustomer.Name);
+        Response.Write(ACustomer.Email);
+        Response.Write(ACustomer.Address);
+        Response.Write(ACustomer.DateAdded);
     }
 }
