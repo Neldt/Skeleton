@@ -29,6 +29,18 @@ namespace Testing4
             // test to see if the two values are the same
             Assert.AreEqual(AnOrder.Active, TestData);
         }
+        [TestMethod]
+        public void OrderIDOK()
+        {
+            //create an instance of a class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data
+            Int32 TestData = 23;
+            //assign the data to the property
+            AnOrder.OrderID = TestData;
+            //test to see the two values are the same
+            Assert.AreEqual(AnOrder.OrderID, TestData);
+        }
 
         [TestMethod]
         public void OrderCode()
@@ -39,7 +51,7 @@ namespace Testing4
             Guid TestData = System.Guid.NewGuid();
             //assign the data to the property
             AnOrder.OrderCode = TestData;
-            //test to see he two values are the same
+            //test to see the two values are the same
             Assert.AreEqual(AnOrder.OrderCode, TestData);
         }
 
@@ -57,16 +69,16 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void DeliveryAddressOK()
+        public void deliveryAddressOK()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test to assign the property
             String TestData = "31 the la vegas";
             //assign the data to the property
-            AnOrder.DeliveryAddress = TestData;
+            AnOrder.deliveryAddress = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.DeliveryAddress, TestData) ;
+            Assert.AreEqual(AnOrder.deliveryAddress, TestData) ;
         }
 
         [TestMethod]
@@ -105,6 +117,43 @@ namespace Testing4
             AnOrder.Notes = TestData;
             //test to see the two values are the same
             Assert.AreEqual(AnOrder.Notes, TestData);
+        }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of a class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //Create some test to assign the property
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 OrderID = 36;
+            //invoke the method
+            Found = AnOrder.Find(OrderID);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestOrderIDFound()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use wuth method
+            Int32 OrderID = 16;
+            //invoke the metod
+            Found = AnOrder.Find(OrderID);
+            //check the method
+            if(AnOrder.OrderID != 16)
+            {
+                OK = false;
+            }
+            //Test to see the result is correct
+            Assert.IsTrue(OK);
         }
     }
 }
