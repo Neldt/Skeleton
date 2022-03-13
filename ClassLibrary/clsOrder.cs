@@ -120,18 +120,40 @@ namespace ClassLibrary
 
         public bool Find(int orderID)
         {
-            //set the pricate data members to the test data value
+            //set the private data members to the data value
             mOrderID = 36;
-            mPurchaseTime = Convert.ToDateTime("20/04/2006");
-            mdeliveryAddress = "Test deliveryAddress";
-            mNotes = "We should win this one";
             mOrderCode = OrderCode;
+            mdeliveryAddress = "Test deliveryAddress";
             mDelivery = true;
+            mPurchaseTime = Convert.ToDateTime("20/04/2006");
+            mNotes = "We should win this one";
             mItemQuantity = 5;
 
-            // Always return true
+            //always return true
             return true;
+
+
+            /*//create an instance of the data connection
+            clsDataConnection DB = clsDataConnection();
+            //add the parameter order ID to search for
+            DB.AddParameter(OrderID, OrderID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderID");
+            //if one record is found (there should be either one or zero!)
+            if(DB.Count = 1)*/
+            /*{
+                // copy the data from the database to the private data members
+                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
+                mOrderCode = Convert.ToString(DB.DataTable.Rows[0]["OrderCode"]);
+                mDelivery = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery"]);
+                mdeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["deliveryAddress"]);
+                mItemQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ItemQuantity"]);
+                mPurchaseTime = Convert.ToDateTime(DB.DataTable.Rows[0]["PurchaseTime"]);
+                mNotes = Convert.ToString(DB.DataTable.Rows[0]["Notes"]);
+                
+            }*/
+
         }
-        
+
     }
 }
