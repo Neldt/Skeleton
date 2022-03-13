@@ -2,13 +2,13 @@
 
 namespace ClassLibrary
 {
-    internal class clsStaff
+    public class clsStaff
     {
-        public string StaffFullName { get; internal set; }
-        public int StaffID { get; internal set; }
-        public bool Availability { get; internal set; }
-        public string StaffRole { get; internal set; }
-        public DateTime StartDate { get; internal set; }
-        public int CustomerID { get; internal set; }
+        public string StaffFullName { get; set; }
+        public int StaffID { get; set; }
+        public bool Availability { get; set; }
+        public string StaffRole { get; set; }
+        public DateTime StartDate { get; set; }
+        public int CustomerID { get; set; }
     }
 }
