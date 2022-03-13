@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StaffTesting
+namespace ClassLibrary
 {
     internal class clsStaff
     {
