@@ -202,7 +202,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.OrderCode != AnOrder.OrderCode) ;
+            if (AnOrder.OrderCode != AnOrder.OrderCode)
             {
                 OK = false;
             }
@@ -224,7 +224,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.ItemQuantity != 5);
+            if (AnOrder.ItemQuantity != 5)
             {
                 OK = false;
             }
@@ -246,7 +246,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.Delivery != true);
+            if (AnOrder.Delivery != true)
             {
                 OK = false;
             }
@@ -268,7 +268,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.Notes != "the day u drop it");
+            if (AnOrder.Notes != "We should win this one")
             {
                 OK = false;
             }
