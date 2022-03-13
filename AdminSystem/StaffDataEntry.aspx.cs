@@ -18,12 +18,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStaff AStaff = new clsStaff();
 
-        ASaff.StaffID = Convert.ToInt32(textStaffID.Text);
-        ASaff.CustomerID = Convert.ToInt32(textCustomerID.Text);
-        ASaff.StaffFullName = textStaffFullName.Text;
-        ASaff.Availability = Convert.ToBoolean(textAvailability.Text);
-        ASaff.StaffRole = textStaffRole.Text;
-        ASaff.StartDate = Convert.ToDateTime(textStartDate.Text);
+        AStaff.StaffID = Convert.ToInt32(textStaffID.Text);
+        AStaff.CustomerID = Convert.ToInt32(textCustomerID.Text);
+        AStaff.StaffFullName = textStaffFullName.Text;
+        AStaff.Availability = Convert.ToBoolean(textAvailability.Text);
+        AStaff.StaffRole = textStaffRole.Text;
+        AStaff.StartDate = Convert.ToDateTime(textStartDate.Text);
         Session["AStaff"] = AStaff;
         Response.Redirect("StaffViewer.aspx");
     }
