@@ -123,11 +123,11 @@ namespace ClassLibrary
             //set the pricate data members to the test data value
             mOrderID = 36;
             mPurchaseTime = Convert.ToDateTime("20/04/2006");
-            mNotes = "the day u drop it";
+            mdeliveryAddress = "Test deliveryAddress";
+            mNotes = "We should win this one";
             mOrderCode = OrderCode;
             mDelivery = true;
             mItemQuantity = 5;
-            mdeliveryAddress = "Test deliveryAddress";
 
             // Always return true
             return true;
