@@ -127,19 +127,25 @@ namespace Testing4
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the metod
             Found = AnOrder.Find(OrderID);
+
             //check the method
             if(AnOrder.OrderID != 36)
             {
                 OK = false;
             }
+
             //Test to see the result is correct
             Assert.IsTrue(OK);
         }
@@ -149,19 +155,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if(AnOrder.PurchaseTime != Convert.ToDateTime("20/04/2006"))
             {
                 OK = false;
             }
+
             //test to see that the result is coorect
             Assert.IsTrue(OK);
         }
@@ -171,19 +183,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if(AnOrder.deliveryAddress != "Test deliveryAddress")
             {
                 OK = false;
             }
+
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
@@ -193,19 +211,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if (AnOrder.OrderCode != AnOrder.OrderCode)
             {
                 OK = false;
             }
+
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
@@ -215,19 +239,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if (AnOrder.ItemQuantity != 5)
             {
                 OK = false;
             }
+
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
@@ -237,19 +267,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if (AnOrder.Delivery != true)
             {
                 OK = false;
             }
+
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
@@ -259,19 +295,25 @@ namespace Testing4
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
+
             //boolean variable to store the result of the search
             Boolean Found = false;
+
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+
             //create some test data to use with the method
             Int32 OrderID = 36;
+
             //invoke the method
             Found = AnOrder.Find(OrderID);
+
             //check the property
             if (AnOrder.Notes != "We should win this one")
             {
                 OK = false;
             }
+
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
