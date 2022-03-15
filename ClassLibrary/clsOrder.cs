@@ -140,8 +140,8 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_FilterByOrderID");
             //if one record is found (there should be either one or zero!)
-            if(DB.Count = 1)*/
-            /*{
+            if(DB.Count = 1)
+            {
                 // copy the data from the database to the private data members
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mOrderCode = Convert.ToString(DB.DataTable.Rows[0]["OrderCode"]);
