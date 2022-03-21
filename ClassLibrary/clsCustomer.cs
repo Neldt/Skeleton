@@ -114,5 +114,63 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string name, string email, string address, string dateAdded)
+        {
+            String error = "";
+            DateTime dateTemp;
+
+            if(name.Length == 0)
+            {
+                error = error + "Name may not be blank : ";
+            }
+
+            if (name.Length > 50)
+            {
+                error = error + "Name must be less than 51 characters : ";
+            }
+
+            if(email.Length == 0)
+            {
+                error = error + "Email may not be blank : ";
+            }
+            
+            if(email.Length > 50)
+            {
+                error = error + "The email must be less than 51 characters : ";
+            }
+
+            if(address.Length == 0)
+            {
+                error = error + "The address may not be blank : ";
+            }
+            
+            if(address.Length > 50)
+            {
+                error = error + "The address must be less than 51 characters : ";
+            }
+
+            try
+            {
+                //copy the dateAdded value to the dateTemp variable
+                dateTemp = Convert.ToDateTime(dateAdded);
+                if (dateTemp < DateTime.Now.Date)
+                {
+                    error = error + "The date cannot be in the past : ";
+                }
+
+                if (dateTemp > DateTime.Now.Date)
+                {
+                    error = error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                error = error + "The date was not a valid date : ";
+            }
+
+
+            return error;
+        }
     }
 }
