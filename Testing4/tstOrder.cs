@@ -36,11 +36,11 @@ namespace Testing4
             //create an instance of a class
             clsOrder AnOrder= new clsOrder();
             //create some test data
-            Guid TestData = System.Guid.NewGuid();
+            Int64 TestData = 23456787654;
             //assign the data to the property
-            AnOrder.OrderCode = TestData;
+            AnOrder.PhoneNumber = TestData;
             //test to see the two values are the same
-            Assert.AreEqual(AnOrder.OrderCode, TestData);
+            Assert.AreEqual(AnOrder.PhoneNumber, TestData);
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace Testing4
             //Create some test to assign the property
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //test to see if the result is true
@@ -135,13 +135,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the metod
             Found = AnOrder.Find(OrderID);
 
             //check the method
-            if(AnOrder.OrderID != 36)
+            if(AnOrder.OrderID != 6)
             {
                 OK = false;
             }
@@ -163,7 +163,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
@@ -191,7 +191,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
@@ -207,7 +207,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TestOrderCodeFound()
+        public void TestPhoneNumberFound()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -219,13 +219,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
 
             //check the property
-            if (AnOrder.OrderCode != AnOrder.OrderCode)
+            if (AnOrder.PhoneNumber != 23456787654)
             {
                 OK = false;
             }
@@ -247,7 +247,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
@@ -275,7 +275,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
@@ -303,7 +303,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 OrderID = 36;
+            Int32 OrderID = 6;
 
             //invoke the method
             Found = AnOrder.Find(OrderID);
