@@ -11,21 +11,21 @@
         <div>
         </div>
         <asp:Label ID="OrderID" runat="server" Text="Order number" width="198px"></asp:Label>
-        <asp:TextBox ID="TxtOrderID" runat="server" style="margin-left: 27px" width="206px"></asp:TextBox>
+        <asp:TextBox ID="txtOrderID" runat="server" style="margin-left: 27px" width="206px"></asp:TextBox>
         <p>
-            <asp:Label ID="OrderCode" runat="server" Text="OrderCode" width="198px"></asp:Label>
+            <asp:Label ID="PhoneNumber" runat="server" Text="Add Phone Number" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TxtOrderCode" runat="server" width="206px"></asp:TextBox>
+            <asp:TextBox ID="txtPhoneNumber" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="ItemQuantity" runat="server" Text="Number of Item(s)" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TxtItemQuantity" runat="server" width="206px"></asp:TextBox>
+            <asp:TextBox ID="txtItemQuantity" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="PurchaseTime" runat="server" Text="Time of the purchase" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TxtPurchaseTime" runat="server" width="206px"></asp:TextBox>
+            <asp:TextBox ID="txtPurchaseTime" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="deliveryAddress" runat="server" Text="Address to drop off" width="198px"></asp:Label>
@@ -36,7 +36,7 @@
 &nbsp;
             <asp:Label ID="Notes" runat="server" Text="Any Instruction. (please specify)." width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TxtNotes" runat="server" width="206px" style="margin-top: 0px"></asp:TextBox>
+            <asp:TextBox ID="txtNotes" runat="server" width="206px" style="margin-top: 0px"></asp:TextBox>
         </p>
         <p>
 &nbsp;&nbsp;&nbsp;

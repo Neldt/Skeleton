@@ -86,18 +86,18 @@ namespace ClassLibrary
         }
 
         //private data member for the OrderID property
-        private Guid mOrderCode;
-        public Guid OrderCode
+        private Int64 mPhoneNumber;
+        public Int64 PhoneNumber
         {
             get
             {
                 //this line of code sends data out of the property
-                return mOrderCode;
+                return mPhoneNumber;
             }
             set
             {
                 //this line of code allows data into the property
-                mOrderCode = value;
+                mPhoneNumber = value;
             }
         }
 
@@ -118,9 +118,9 @@ namespace ClassLibrary
         
         }
 
-        public bool Find(int orderID)
+        public bool Find(int OrderID)
         {
-            //set the private data members to the data value
+            /*//set the private data members to the data value
             mOrderID = 36;
             mOrderCode = OrderCode;
             mdeliveryAddress = "Test deliveryAddress";
@@ -130,28 +130,37 @@ namespace ClassLibrary
             mItemQuantity = 5;
 
             //always return true
-            return true;
+            return true;*/
 
 
-            /*//create an instance of the data connection
-            clsDataConnection DB = clsDataConnection();
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
             //add the parameter order ID to search for
-            DB.AddParameter(OrderID, OrderID);
+            DB.AddParameter("OrderID", OrderID);
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_FilterByOrderID");
             //if one record is found (there should be either one or zero!)
-            if(DB.Count = 1)
+            if(DB.Count == 1)
             {
                 // copy the data from the database to the private data members
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
-                mOrderCode = Convert.ToString(DB.DataTable.Rows[0]["OrderCode"]);
+                mPhoneNumber = Convert.ToInt64(DB.DataTable.Rows[0]["PhoneNumber"]);
                 mDelivery = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery"]);
                 mdeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["deliveryAddress"]);
                 mItemQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ItemQuantity"]);
                 mPurchaseTime = Convert.ToDateTime(DB.DataTable.Rows[0]["PurchaseTime"]);
                 mNotes = Convert.ToString(DB.DataTable.Rows[0]["Notes"]);
+
+                //returns that everything work okay
+                return true;
                 
-            }*/
+            }
+            //if no record was found
+            else
+            {
+                //return false
+                return false;
+            }
 
         }
 
