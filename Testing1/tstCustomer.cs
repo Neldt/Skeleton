@@ -42,7 +42,7 @@ namespace Testing1
             DateTime TestData = DateTime.Now.Date;
             ACustomer.DateAdded = TestData;
             Assert.AreEqual(ACustomer.DateAdded, TestData);
-
+            
         }
 
         [TestMethod]
