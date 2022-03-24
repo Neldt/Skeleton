@@ -442,7 +442,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void addressMinLessOne()
+        public void AddressMinLessOne()
         {
             clsCustomer ACustomer = new clsCustomer();
             String error = "";
