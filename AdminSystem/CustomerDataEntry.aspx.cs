@@ -12,29 +12,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        //capture customer id
-        int CustomerIDint= 0;
+        int CustomerIDint = 0;
         Int32.TryParse(txtCustomerID.Text, out CustomerIDint);
-        ACustomer.CustomerID = CustomerIDint;
-        //capture name
-        ACustomer.Name = txtName.Text;
         
-        //capture Email
-        ACustomer.Email = txtEmail.Text;
-        
-        //capture Address
-        ACustomer.Address = txtAddress.Text;
-        
-        //capture Date Added
-        string Date = txtDateAdded.Text;
-        DateTime Datex = Convert.ToDateTime(Date);
-        ACustomer.DateAdded = Datex;
-        
+        string Name = txtName.Text;
+        string Email = txtEmail.Text;
+        string Address = txtAddress.Text;
+        string DateAdded = txtDateAdded.Text;
+        //send string values to validate method
+        string Error = "";
+        Error = ACustomer.Valid(Name, Email, Address, DateAdded);
+        if(Error == "")
+        {
+            ACustomer.CustomerID = CustomerIDint;
+            ACustomer.Name = Name;
+            ACustomer.Email = Email;
+            ACustomer.Address = Address;
+            DateTime Date = Convert.ToDateTime(DateAdded);
+            ACustomer.DateAdded = Date;
 
-        //store in the session object
-        Session["ACustomer"] = ACustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
+
+
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
