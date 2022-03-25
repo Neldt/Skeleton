@@ -12,7 +12,9 @@
         </div>
         <asp:Label ID="OrderID" runat="server" Text="Order number" width="198px"></asp:Label>
         <asp:TextBox ID="txtOrderID" runat="server" style="margin-left: 27px" width="206px"></asp:TextBox>
-        <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnFind" runat="server" OnClick="lblFind_Click" Text="Find" />
+&nbsp;<p>
             <asp:Label ID="PhoneNumber" runat="server" Text="Add Phone Number" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtPhoneNumber" runat="server" width="206px"></asp:TextBox>
@@ -23,7 +25,12 @@
             <asp:TextBox ID="txtItemQuantity" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="DeliveryTime" runat="server" Text="Time for the purchase" width="198px"></asp:Label>
+            &nbsp;</p>
+        <p>
+            <asp:CheckBox ID="chkDelivered" runat="server" Text="Delivery?" width="198px" />
+        </p>
+        <p>
+            <asp:Label ID="DeliveryTime" runat="server" Text="Time for the delivery" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtDeliveryTime" runat="server" width="206px"></asp:TextBox>
         </p>
@@ -40,8 +47,7 @@
         </p>
         <p>
 &nbsp;&nbsp;&nbsp;
-            <asp:CheckBox ID="chkDelivered" runat="server" Text="Delivered" width="198px" />
-        </p>
+            </p>
         <asp:Label ID="lblError" runat="server" width="198px"></asp:Label>
         <p>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" width="86px" />
