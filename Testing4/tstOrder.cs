@@ -11,7 +11,7 @@ namespace Testing4
         string PhoneNumber = "3498764567834";
         string ItemQuantity = "3";
         string DeliveryTime = DateTime.Now.Date.ToString();
-        string deliveryAddress = "to be delivered here";
+        string DeliveryAddress = "to be delivered here";
 
         [TestMethod]
         public void InstanceOK()
@@ -40,7 +40,7 @@ namespace Testing4
         public void OrderCodePropertyOK()
         {
             //create an instance of a class
-            clsOrder AnOrder= new clsOrder();
+            clsOrder AnOrder = new clsOrder();
             //create some test data
             Int64 TestData = 23456787654;
             //assign the data to the property
@@ -59,20 +59,20 @@ namespace Testing4
             //assign the data to the property
             AnOrder.DeliveryTime = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.DeliveryTime, TestData) ;
+            Assert.AreEqual(AnOrder.DeliveryTime, TestData);
         }
 
         [TestMethod]
-        public void deliveryAddressPropertyOK()
+        public void DeliveryAddressPropertyOK()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test to assign the property
             String TestData = "31 the la vegas";
             //assign the data to the property
-            AnOrder.deliveryAddress = TestData;
+            AnOrder.DeliveryAddress = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.deliveryAddress, TestData) ;
+            Assert.AreEqual(AnOrder.DeliveryAddress, TestData);
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace Testing4
             Found = AnOrder.Find(OrderID);
 
             //check the method
-            if(AnOrder.OrderID != 6)
+            if (AnOrder.OrderID != 6)
             {
                 OK = false;
             }
@@ -175,7 +175,7 @@ namespace Testing4
             Found = AnOrder.Find(OrderID);
 
             //check the property
-            if(AnOrder.DeliveryTime != Convert.ToDateTime("20/04/2006"))
+            if (AnOrder.DeliveryTime != Convert.ToDateTime("20/04/2006"))
             {
                 OK = false;
             }
@@ -185,7 +185,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TestdeliveryAddressFound()
+        public void TestDeliveryAddressFound()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -203,7 +203,7 @@ namespace Testing4
             Found = AnOrder.Find(OrderID);
 
             //check the property
-            if(AnOrder.deliveryAddress != "Test deliveryAddress")
+            if (AnOrder.DeliveryAddress != "Test deliveryAddress")
             {
                 OK = false;
             }
@@ -331,7 +331,7 @@ namespace Testing4
 
             String Error = "";
 
-            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
 
             Assert.AreEqual(Error, "");
         }
@@ -343,9 +343,171 @@ namespace Testing4
 
             String Error = "";
 
-            String PhoneNumber = AnOrder.PhoneNumber.ToString();
+            Int64 PhoneCall;
 
-            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+            PhoneCall = 345678;
+
+            string PhoneNumber = PhoneCall.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int64 PhoneCall;
+
+            PhoneCall = 34567896235671;
+
+            string PhoneNumber = PhoneCall.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int64 PhoneCall;
+
+            PhoneCall = 456789623567125679;
+
+            string PhoneNumber = PhoneCall.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberExtMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int64 PhoneCall;
+
+            PhoneCall = 4567896235671256739;
+
+            string PhoneNumber = PhoneCall.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 0;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 17;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 15;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 1;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 2;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string ItemQuantity = "This is not a number";
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
 
             Assert.AreNotEqual(Error, "");
         }
@@ -365,10 +527,214 @@ namespace Testing4
 
             string DeliveryTime = TestDate.ToString();
 
-            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
 
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void DeliveryTimeMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddDays(1);
+
+            string DeliveryTime = TestDate.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryTimeMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddMonths(1);
+
+            string DeliveryTime = TestDate.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryTimeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddMonths(2);
+
+            string DeliveryTime = TestDate.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryTimeMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddMonths(3);
+
+            string DeliveryTime = TestDate.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryTimeInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryTime = "This is not a date! ";
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressExtMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressExtMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(150, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(19, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(21, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(25, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMaxLesOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(29, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMaxplusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            string DeliveryAddress = "";
+
+            DeliveryAddress = DeliveryAddress.PadRight(31, 'a');
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
 
     }
 }

@@ -19,7 +19,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //Capture the Order Number
-        AnOrder.deliveryAddress = txtdeliveryAddress.Text;
+        AnOrder.DeliveryAddress = txtDeliveryAddress.Text;
         //store the address in the session object
         Session["AnOrder"] = AnOrder;
         //Navigate to the viewer page

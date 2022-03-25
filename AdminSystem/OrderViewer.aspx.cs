@@ -15,7 +15,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnOrder = (clsOrder)Session["AnOrder"];
         //Display the quantity of Item for this entry
-        Response.Write(AnOrder.deliveryAddress);
+        Response.Write(AnOrder.DeliveryAddress);
 
     }
 }
