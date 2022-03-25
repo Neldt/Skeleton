@@ -23,14 +23,14 @@
             <asp:TextBox ID="txtItemQuantity" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="PurchaseTime" runat="server" Text="Time of the purchase" width="198px"></asp:Label>
+            <asp:Label ID="DeliveryTime" runat="server" Text="Time for the purchase" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtPurchaseTime" runat="server" width="206px"></asp:TextBox>
+            <asp:TextBox ID="txtDeliveryTime" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="deliveryAddress" runat="server" Text="Address to drop off" width="198px"></asp:Label>
+            <asp:Label ID="DeliveryAddress" runat="server" Text="Address to drop off" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtdeliveryAddress" runat="server" width="206px"></asp:TextBox>
+            <asp:TextBox ID="txtDeliveryAddress" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
 &nbsp;

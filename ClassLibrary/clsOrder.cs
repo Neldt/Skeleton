@@ -6,18 +6,18 @@ namespace ClassLibrary
     {
 
         //private data member for the delivery address property
-        private String mdeliveryAddress;
-        public String deliveryAddress
+        private String mDeliveryAddress;
+        public String DeliveryAddress
         {
             get
             {
                 //this line of code sends data out of the property
-                return mdeliveryAddress;
+                return mDeliveryAddress;
             }
             set
             {
                 //this line of code allows data into the property
-                mdeliveryAddress = value;
+                mDeliveryAddress = value;
             }
         }
         
@@ -133,7 +133,7 @@ namespace ClassLibrary
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mPhoneNumber = Convert.ToInt64(DB.DataTable.Rows[0]["PhoneNumber"]);
                 mDelivery = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery"]);
-                mdeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["deliveryAddress"]);
+                mDeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["DeliveryAddress"]);
                 mItemQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ItemQuantity"]);
                 mDeliveryTime = Convert.ToDateTime(DB.DataTable.Rows[0]["DeliveryTime"]);
                 mNotes = Convert.ToString(DB.DataTable.Rows[0]["Notes"]);
@@ -156,21 +156,72 @@ namespace ClassLibrary
             String Error = "";
 
             DateTime DateTemp;
-            
-            if(phoneNumber.Length == 0)
+
+            Int32 ItemAmount;
+
+            // Testing the Phone Number section
+            if (phoneNumber.Length <= 6)
             {
-                Error = Error + "This field should not be empty : ";
+                Error = Error + "This field should not be empty and have more than 6 digits : ";
             }
 
-            if(phoneNumber.Length > 23)
+            if (phoneNumber.Length > 18)
             {
-               Error = Error + "should not be longer than 23 digits : ";
+                Error = Error + "should not be longer than 23 digits : ";
             }
 
-            DateTemp = Convert.ToDateTime(deliveryTime);
-            if(DateTemp < DateTime.Now.AddDays(+1))
+            // Testing the Item quantity section
+            try
             {
-                Error = Error + "Please, Allow more than a day for the delivery : ";
+                ItemAmount = Convert.ToInt32(itemQuantity);
+                if (ItemAmount <= 0)
+                {
+                    Error = Error + "Item can not be zero : ";
+                }
+
+                if (ItemAmount > 16)
+                {
+                    Error = Error + "Sorry, Cannot purchase mor than 16 Items";
+                }
+            }
+            catch
+            {
+                Error = Error + "Only Int to be insert";
+            }
+
+            //Testing the delivery Time section
+            try
+            {
+                DateTemp = Convert.ToDateTime(deliveryTime);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "Please, Allow more than a day for the delivery : ";
+                }
+
+                if (DateTemp > DateTime.Now.AddMonths(+2))
+                {
+                    Error = Error + " Sorry, we can only deliver within 2 month times : ";
+                }
+            }
+
+            catch
+            {
+                Error = Error + "The date is not a valid date : ";
+            }
+
+            if (deliveryAddress.Length == 0)
+            {
+                Error = Error + "The field should not be blank : ";
+            }
+
+            if (deliveryAddress.Length > 149)
+            {
+                Error = Error + "The field cannot contain mor than 150 character : ";
+            }
+
+            if (deliveryAddress.Length > 30)
+            {
+                Error = Error + "The field should not exceed 30 characters : ";
             }
 
             return Error;
