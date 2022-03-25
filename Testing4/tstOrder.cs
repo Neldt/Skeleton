@@ -7,6 +7,12 @@ namespace Testing4
     [TestClass]
     public class tstOrder
     {
+
+        string PhoneNumber = "3498764567834";
+        string ItemQuantity = "3";
+        string DeliveryTime = DateTime.Now.Date.ToString();
+        string deliveryAddress = "to be delivered here";
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -44,16 +50,16 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void PurchaseTimePropertyOK()
+        public void DeliveryTimePropertyOK()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AnOrder.PurchaseTime = TestData;
+            AnOrder.DeliveryTime = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.PurchaseTime, TestData) ;
+            Assert.AreEqual(AnOrder.DeliveryTime, TestData) ;
         }
 
         [TestMethod]
@@ -151,7 +157,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TestPurchaseTimeFound()
+        public void TestDeliveryTimeFound()
         {
             //create an instance of a class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -169,7 +175,7 @@ namespace Testing4
             Found = AnOrder.Find(OrderID);
 
             //check the property
-            if(AnOrder.PurchaseTime != Convert.ToDateTime("20/04/2006"))
+            if(AnOrder.DeliveryTime != Convert.ToDateTime("20/04/2006"))
             {
                 OK = false;
             }
@@ -317,5 +323,52 @@ namespace Testing4
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberExtMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            String PhoneNumber = AnOrder.PhoneNumber.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryTimeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddDays(-1);
+
+            string DeliveryTime = TestDate.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, deliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }

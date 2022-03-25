@@ -22,18 +22,18 @@ namespace ClassLibrary
         }
         
         //private data member for the PurchaseTime property
-        private DateTime mPurchaseTime;
-        public DateTime PurchaseTime
+        private DateTime mDeliveryTime;
+        public DateTime DeliveryTime
         {
             get
             {
                 //this line of code sends data out of the property
-                return mPurchaseTime;
+                return mDeliveryTime;
             }
             set
             {
                 //this line of code allows data into the property
-                mPurchaseTime = value;
+                mDeliveryTime = value;
             }
         }
 
@@ -120,19 +120,6 @@ namespace ClassLibrary
 
         public bool Find(int OrderID)
         {
-            /*//set the private data members to the data value
-            mOrderID = 36;
-            mOrderCode = OrderCode;
-            mdeliveryAddress = "Test deliveryAddress";
-            mDelivery = true;
-            mPurchaseTime = Convert.ToDateTime("20/04/2006");
-            mNotes = "We should win this one";
-            mItemQuantity = 5;
-
-            //always return true
-            return true;*/
-
-
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter order ID to search for
@@ -148,7 +135,7 @@ namespace ClassLibrary
                 mDelivery = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery"]);
                 mdeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["deliveryAddress"]);
                 mItemQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ItemQuantity"]);
-                mPurchaseTime = Convert.ToDateTime(DB.DataTable.Rows[0]["PurchaseTime"]);
+                mDeliveryTime = Convert.ToDateTime(DB.DataTable.Rows[0]["DeliveryTime"]);
                 mNotes = Convert.ToString(DB.DataTable.Rows[0]["Notes"]);
 
                 //returns that everything work okay
@@ -164,5 +151,31 @@ namespace ClassLibrary
 
         }
 
+        public string Valid(string phoneNumber, string itemQuantity, string deliveryTime, string deliveryAddress)
+        {
+            String Error = "";
+
+            DateTime DateTemp;
+            
+            if(phoneNumber.Length == 0)
+            {
+                Error = Error + "This field should not be empty : ";
+            }
+
+            if(phoneNumber.Length > 23)
+            {
+               Error = Error + "should not be longer than 23 digits : ";
+            }
+
+            DateTemp = Convert.ToDateTime(deliveryTime);
+            if(DateTemp < DateTime.Now.AddDays(+1))
+            {
+                Error = Error + "Please, Allow more than a day for the delivery : ";
+            }
+
+            return Error;
+
+
+        }
     }
 }
