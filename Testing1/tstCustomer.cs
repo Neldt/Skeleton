@@ -13,7 +13,7 @@ namespace Testing1
         string email = "john@john.com";
         string address = "13 street";
         string dateAdded = DateTime.Now.Date.ToString();
-
+        
         [TestMethod]
         public void InstanceOK()
         {
@@ -523,7 +523,5 @@ namespace Testing1
             error = ACustomer.Valid(name, email, address, dateAdded);
             Assert.AreNotEqual(error, "");
         }
-
-
     }
 }

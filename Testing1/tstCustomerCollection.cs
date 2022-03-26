@@ -76,5 +76,64 @@ namespace Testing1
             //test to see that the two count values are the same
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.ReceiveMarketing = true;
+            TestItem.CustomerID = 1;
+            TestItem.Name = "John Smith";
+            TestItem.Email = "John@Smith.co.uk";
+            TestItem.Address = "12a street";
+            TestItem.DateAdded = DateTime.Now.Date;
+            //set ThisCustomer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see that the values are the same
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.ReceiveMarketing = false;
+            TestItem.Name = "Billy Sparks";
+            TestItem.Email = "Billy@Sparks.com";
+            TestItem.Address = "32 WilloBrooke Avenue";
+            TestItem.DateAdded = DateTime.Now.Date;
+            //set ThisCustomer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //modify the test data
+            TestItem.ReceiveMarketing = true;
+            TestItem.Name = "Sam Sparks";
+            TestItem.Email = "Sam@Sparks.com";
+            TestItem.Address = "34 Swallow Falls";
+            TestItem.DateAdded = DateTime.Now.Date;
+            //set the record based on the new test data
+            AllCustomers.ThisCustomer = TestItem;
+            //update the record
+            AllCustomers.Update();
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see ThisCustomer matches the test data
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
     }
 }
