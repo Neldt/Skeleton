@@ -9,12 +9,28 @@ using ClassLibrary;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
 
+    //variable to store the primary key with page level scope
+    Int32 CustomerID;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //get the number of the customer to be processed
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if(IsPostBack == false)
+        {
+            //if this is not a new record
+            if(CustomerID != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
+    }
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        int CustomerIDint = 0;
-        Int32.TryParse(txtCustomerID.Text, out CustomerIDint);
-        
+        //string values for valid method
         string Name = txtName.Text;
         string Email = txtEmail.Text;
         string Address = txtAddress.Text;
@@ -24,15 +40,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ACustomer.Valid(Name, Email, Address, DateAdded);
         if(Error == "")
         {
-            ACustomer.CustomerID = CustomerIDint;
+            ACustomer.CustomerID = CustomerID;
             ACustomer.Name = Name;
             ACustomer.Email = Email;
             ACustomer.Address = Address;
             DateTime Date = Convert.ToDateTime(DateAdded);
             ACustomer.DateAdded = Date;
-
-            Session["ACustomer"] = ACustomer;
-            Response.Redirect("CustomerViewer.aspx");
+            ACustomer.ReceiveMarketing = chkReceiveMarketing.Checked;
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            if(CustomerID == -1)
+            {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //update the record
+                CustomerList.Update();
+            }
+            //redirect back to the listpage
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -78,5 +113,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             lblError.Text = "Error CustomerID Not Found";
         }
+    }
+
+    void DisplayCustomer()
+    {
+        clsCustomerCollection Customercol = new clsCustomerCollection();
+        //find the record to update
+        Customercol.ThisCustomer.Find(CustomerID);
+        //display the data for this record
+        txtCustomerID.Text = Customercol.ThisCustomer.CustomerID.ToString();
+        txtName.Text = Customercol.ThisCustomer.Name;
+        txtEmail.Text = Customercol.ThisCustomer.Email;
+        txtAddress.Text = Customercol.ThisCustomer.Address;
+        txtDateAdded.Text = Customercol.ThisCustomer.DateAdded.ToString();
+        chkReceiveMarketing.Checked = Customercol.ThisCustomer.ReceiveMarketing;
     }
 }

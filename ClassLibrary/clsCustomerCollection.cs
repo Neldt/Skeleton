@@ -7,7 +7,12 @@ namespace ClassLibrary
 
     public class clsCustomerCollection
     {
+        //private data member for the list
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        //private data member thisCustomer
+        clsCustomer mThisCustomer = new clsCustomer();
+
+
         public List<clsCustomer> CustomerList
         {
             get
@@ -30,7 +35,17 @@ namespace ClassLibrary
                 //....
             }
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
 
         public clsCustomerCollection()
         {
@@ -64,5 +79,35 @@ namespace ClassLibrary
 
         }
 
+        public int Add()
+        {
+            //adds a new record to the database on the values of mThisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@Name", mThisCustomer.Name);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@DateAdded", mThisCustomer.DateAdded);
+            DB.AddParameter("@ReceiveMarketing", mThisCustomer.ReceiveMarketing);
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of ThisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            DB.AddParameter("@Name", mThisCustomer.Name);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@DateAdded", mThisCustomer.DateAdded);
+            DB.AddParameter("@ReceiveMarketing", mThisCustomer.ReceiveMarketing);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Update");
+        }
     }
 }
