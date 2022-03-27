@@ -22,7 +22,6 @@ namespace Testing1
             //test to see that it exists
             Assert.IsNotNull(ACustomer);
         }
-
         [TestMethod]
         public void ReceiveMarketingPropertyOK()
         {
@@ -118,7 +117,7 @@ namespace Testing1
             Boolean ok = true;
             Int32 CustomerId = 8;
             found = ACustomer.Find(CustomerId);
-            if (ACustomer.DateAdded != Convert.ToDateTime("01/01/2001 00:00"))
+            if (ACustomer.DateAdded != Convert.ToDateTime("26/03/2022 00:00"))
             {
                 ok = false;
             }
@@ -133,7 +132,7 @@ namespace Testing1
             Boolean ok = true;
             Int32 CustomerId = 8;
             found = ACustomer.Find(CustomerId);
-            if (ACustomer.Address != "Test Address")
+            if (ACustomer.Address != "14 Willow road")
             {
                 ok = false;
             }
@@ -148,7 +147,7 @@ namespace Testing1
             Boolean ok = true;
             Int32 CustomerId = 8;
             found = ACustomer.Find(CustomerId);
-            if (ACustomer.Email != "Test Email")
+            if (ACustomer.Email != "Sam@Smith.com")
             {
                 ok = false;
             }
@@ -163,7 +162,7 @@ namespace Testing1
             Boolean ok = true;
             Int32 CustomerId = 8;
             found = ACustomer.Find(CustomerId);
-            if (ACustomer.Name != "Test Name")
+            if (ACustomer.Name != "Sam Smith")
             {
                 ok = false;
             }
@@ -178,7 +177,7 @@ namespace Testing1
             Boolean ok = true;
             Int32 CustomerId = 8;
             found = ACustomer.Find(CustomerId);
-            if (ACustomer.ReceiveMarketing != true)
+            if (ACustomer.ReceiveMarketing != false)
             {
                 ok = false;
             }
