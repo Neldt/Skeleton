@@ -135,5 +135,84 @@ namespace Testing1
             //test to see ThisCustomer matches the test data
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustomerID = 10;
+            TestItem.ReceiveMarketing = true;
+            TestItem.Name = "Greg Solomon";
+            TestItem.Email = "Greg@Solomon.com";
+            TestItem.Address = "37 Pillow Road";
+            TestItem.DateAdded = DateTime.Now.Date;
+            //set ThisCustomer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //delete the record
+            AllCustomers.Delete();
+            //now find the record
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a blank string (should return all records)
+            FilteredCustomers.ReportByName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a name that doesn't exist
+            FilteredCustomers.ReportByName("xxxx xxxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //var to store the outcome
+            Boolean OK = true;
+            //apply a name
+            FilteredCustomers.ReportByName("YYYY YYYY");
+            //check that the correct number of records are found
+            if(FilteredCustomers.Count == 2)
+            {
+                //check that the first record is ID 30
+                if(FilteredCustomers.CustomerList[0].CustomerID != 30)
+                {
+                    OK = false;
+                }
+                //check to see that the second record ID is 34
+                if(FilteredCustomers.CustomerList[1].CustomerID != 34)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are two records
+            Assert.IsTrue(OK);
+        }
     }
 }
