@@ -22,6 +22,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         string DeliveryAddress = txtDeliveryAddress.Text;
 
+        string Notes = txtNotes.Text;
+
         string Error = "";
 
         Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
@@ -36,10 +38,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             AnOrder.DeliveryAddress = DeliveryAddress;
 
+            AnOrder.Notes = Notes;
+
+            clsOrderCollection OrderList = new clsOrderCollection();
+
+            OrderList.ThisOrder = AnOrder;
+
+            OrderList.Add();
+
             //store the address in the session object
             Session["AnOrder"] = AnOrder;
             //Navigate to the viewer page
-            Response.Redirect("OrderViewer.aspx");
+            Response.Redirect("OrderList.aspx");
         }
         else
         {

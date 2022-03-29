@@ -90,5 +90,33 @@ namespace Testing4
 
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.OrderID = 10;
+            TestItem.DeliveryTime = DateTime.Now.Date;
+            TestItem.DeliveryAddress = "23 RTY CTI ";
+            TestItem.Delivery = true;
+            TestItem.ItemQuantity = 3;
+            TestItem.PhoneNumber = 67876543456;
+            TestItem.Notes = "RTUYIK sUGHJL YUIGHKJL";
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.OrderID = PrimaryKey;
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
     }
 }
