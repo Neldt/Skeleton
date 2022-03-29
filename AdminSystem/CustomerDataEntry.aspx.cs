@@ -128,4 +128,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtDateAdded.Text = Customercol.ThisCustomer.DateAdded.ToString();
         chkReceiveMarketing.Checked = Customercol.ThisCustomer.ReceiveMarketing;
     }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
+    }
 }
