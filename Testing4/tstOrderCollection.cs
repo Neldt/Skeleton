@@ -76,13 +76,13 @@ namespace Testing4
 
             clsOrder TestItem = new clsOrder();
 
-            TestItem.OrderID = 9;
+            TestItem.OrderID = 8;
+            TestItem.PhoneNumber = 465967544567;
+            TestItem.ItemQuantity = 3;
             TestItem.DeliveryTime = DateTime.Now.Date;
-            TestItem.DeliveryAddress = "23 RTYUJH CTI ";
             TestItem.Delivery = true;
-            TestItem.ItemQuantity = 5;
-            TestItem.PhoneNumber = 67876543456;
-            TestItem.Notes = "RTUYIK FYUGHJL YUIGHKJL";
+            TestItem.DeliveryAddress = "1 des vegas";
+            TestItem.Notes = "leave at the door";
 
             TestList.Add(TestItem);
 
@@ -117,6 +117,122 @@ namespace Testing4
             AllOrders.ThisOrder.Find(PrimaryKey);
 
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+            
+            TestItem.DeliveryTime = DateTime.Now.Date;
+            TestItem.DeliveryAddress = "23 RTY CTI ";
+            TestItem.Delivery = true;
+            TestItem.ItemQuantity = 3;
+            TestItem.PhoneNumber = 67876543456;
+            TestItem.Notes = "RTUYIK sUGHJL YUIGHKJL";
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.OrderID = PrimaryKey;
+
+            TestItem.DeliveryTime = DateTime.Now.Date;
+            TestItem.DeliveryAddress = "2 city CTI ";
+            TestItem.Delivery = false;
+            TestItem.ItemQuantity = 1;
+            TestItem.PhoneNumber = 67894543456;
+            TestItem.Notes = "RT sUGHJL IGHKJL";
+
+            AllOrders.ThisOrder = TestItem;
+
+            AllOrders.Update();
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.OrderID = 10;
+            TestItem.DeliveryTime = DateTime.Now.Date;
+            TestItem.DeliveryAddress = "23 RTY CTI ";
+            TestItem.Delivery = true;
+            TestItem.ItemQuantity = 3;
+            TestItem.PhoneNumber = 67876543456;
+            TestItem.Notes = "RTUYIK sUGHJL YUIGHKJL";
+
+            AllOrders.ThisOrder = TestItem;
+
+            TestItem.OrderID = PrimaryKey;
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            AllOrders.Delete();
+
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void ReportByDeliveryAddress()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+
+            FilteredOrders.ReportByDeliveryAddress("");
+
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByDeliveryAddressNotFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+
+            FilteredOrders.ReportByDeliveryAddress("xxx XXXXXXX");
+
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByDeliveryAddressTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+
+            Boolean OK = true;
+
+            FilteredOrders.ReportByDeliveryAddress("23 RTY CTI ");
+
+            if(FilteredOrders.Count == 2)
+            {
+                if(FilteredOrders.OrderList[0].OrderID != 8)
+                {
+                    OK = false;
+                }
+
+                if(FilteredOrders.OrderList[9].OrderID != 9)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
         }
     }
 }

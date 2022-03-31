@@ -10,17 +10,17 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:Label ID="OrderID" runat="server" Text="Order number" width="198px"></asp:Label>
+        <asp:Label ID="lblOrderID" runat="server" Text="Order number" width="198px"></asp:Label>
         <asp:TextBox ID="txtOrderID" runat="server" style="margin-left: 27px" width="206px"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnFind" runat="server" OnClick="lblFind_Click" Text="Find" />
 &nbsp;<p>
-            <asp:Label ID="PhoneNumber" runat="server" Text="Add Phone Number" width="198px"></asp:Label>
+            <asp:Label ID="lblPhoneNumber" runat="server" Text="Add Phone Number" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtPhoneNumber" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="ItemQuantity" runat="server" Text="Number of Item(s)" width="198px"></asp:Label>
+            <asp:Label ID="lblItemQuantity" runat="server" Text="Number of Item(s)" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtItemQuantity" runat="server" width="206px"></asp:TextBox>
         </p>
@@ -30,18 +30,18 @@
             <asp:CheckBox ID="chkDelivered" runat="server" Text="Delivery?" width="198px" />
         </p>
         <p>
-            <asp:Label ID="DeliveryTime" runat="server" Text="Time for the delivery" width="198px"></asp:Label>
+            <asp:Label ID="lblDeliveryTime" runat="server" Text="Time for the delivery" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtDeliveryTime" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="DeliveryAddress" runat="server" Text="Address to drop off" width="198px"></asp:Label>
+            <asp:Label ID="lblDeliveryAddress" runat="server" Text="Address to drop off" width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtDeliveryAddress" runat="server" width="206px"></asp:TextBox>
         </p>
         <p>
 &nbsp;
-            <asp:Label ID="Notes" runat="server" Text="Any Instruction. (please specify)." width="198px"></asp:Label>
+            <asp:Label ID="lblNotes" runat="server" Text="Any Instruction. (please specify)." width="198px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtNotes" runat="server" width="206px" style="margin-top: 0px"></asp:TextBox>
         </p>
