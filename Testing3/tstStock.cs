@@ -7,6 +7,8 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        public bool Found { get; private set; }
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -98,8 +100,62 @@ namespace Testing3
             Assert.AreEqual(AnStock.Price, TestData);
 
         }
-        
-
+        [TestMethod]
+        public void FindMethod()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 ItemNo = 24;
+            //invoke the method
+            Found = AnStock.Find(ItemNo);
+            //test to see if the results is true
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestItemNoFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnItem = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(lets assume)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ItemNo = 24;
+            //invoke the method
+            Found = AnItem.Find(ItemNo);
+            //check the Item no
+            if (AnItem.ItemNo != 24)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateAddedFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnItem = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (lets say it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ItemNo = 24;
+            //invoke the method
+            Found = AnItem.Find(ItemNo);
+            //check the property
+            if (AnItem.DateAdded != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
 
     }
 
