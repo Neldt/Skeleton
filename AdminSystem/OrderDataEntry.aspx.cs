@@ -7,15 +7,18 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level cope
     Int32 OrderID;
-
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of order to be processed
         OrderID = Convert.ToInt32(Session["OrderID"]);
         if (IsPostBack == false)
         {
+            //if this is not the new record
             if (OrderID != -1)
             {
+                //display the current data for the record
                 DisplayOrder();
             }
         }
@@ -23,10 +26,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     void DisplayOrder()
     {
+        //create an instance of the order book
         clsOrderCollection Order = new clsOrderCollection();
-
+        //find the record to update
         Order.ThisOrder.Find(OrderID);
-
+        //display the data for this record
         txtOrderID.Text = Order.ThisOrder.OrderID.ToString();
         txtPhoneNumber.Text = Order.ThisOrder.PhoneNumber.ToString();
         txtItemQuantity.Text = Order.ThisOrder.ItemQuantity.ToString();
@@ -51,43 +55,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string DeliveryTime = txtDeliveryTime.Text;
         //capture the deliveryAddress
         string DeliveryAddress = txtDeliveryAddress.Text;
-
+        //var to store any error messages
         string Error = "";
-
+        //validate the data
         Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
 
         if(Error == "")
         {
+            //capture the OrderID
             AnOrder.OrderID = OrderID;
-
+            //capture the Phone number
             AnOrder.PhoneNumber = Convert.ToInt64(PhoneNumber);
-
+            //capture the item quantity
             AnOrder.ItemQuantity = Convert.ToInt32(ItemQuantity);
-
+            //capture the delivery
             AnOrder.Delivery = chkDelivered.Checked;
-
-            DateTime Date = Convert.ToDateTime(DeliveryTime);
-
-            AnOrder.DeliveryTime = Date;
-
+            //capture the delivery time
+            AnOrder.DeliveryTime = Convert.ToDateTime(DeliveryTime);
+            //capture the delivery address
             AnOrder.DeliveryAddress = DeliveryAddress;
-
+            //capture the Note
             AnOrder.Notes = Notes;
-
+            //create a new instance of the order collection
             clsOrderCollection OrderList = new clsOrderCollection();
 
+            //if this is a new record i.e. OrderID != -1 then add the data
             if(OrderID == -1)
             {
+                // set the thisOrder property
                 OrderList.ThisOrder = AnOrder;
-
+                //add the new record
                 OrderList.Add();
             }
+            //otherwise it must be an update
             else
             {
+                //find the record to update
                 OrderList.ThisOrder.Find(OrderID);
-
+                //set the thisOrder property
                 OrderList.ThisOrder = AnOrder;
-
+                //update the record
                 OrderList.Update();
             }
 

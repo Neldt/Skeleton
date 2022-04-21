@@ -48,11 +48,11 @@ namespace ClassLibrary
 
         public clsOrderCollection()
         {
-
+            //object for the data connection
             clsDataConnection DB = new clsDataConnection();
-
+            //execute the stored procedure
             DB.Execute("sproc_tblOrder_SelectAll");
-
+            //populate the arraylist with the datatable
             PopulateArray(DB);
         }
 
@@ -74,8 +74,10 @@ namespace ClassLibrary
 
         public void Update()
         {
+            //update an existing record based on the values of thisOrder
+            //connect to the database
             clsDataConnection DB = new clsDataConnection();
-
+            //set the parameter for the stored procedure
             DB.AddParameter("@OrderID", mThisOrder.OrderID);
             DB.AddParameter("@Phonenumber", mThisOrder.PhoneNumber);
             DB.AddParameter("@ItemQuantity", mThisOrder.ItemQuantity);
@@ -83,27 +85,31 @@ namespace ClassLibrary
             DB.AddParameter("@Delivery", mThisOrder.Delivery);
             DB.AddParameter("@DeliveryAddress", mThisOrder.DeliveryAddress);
             DB.AddParameter("@Notes", mThisOrder.Notes);
-
+            //execute the stored procedure
             DB.Execute("sproc_tblOrder_Update");
         }
 
         public void Delete()
         {
+            //deletes the record pointed to by thisOrder
+            //connect to the database
             clsDataConnection DB = new clsDataConnection();
-
+            //set the parameters for the stored procedure
             DB.AddParameter("@OrderID", mThisOrder.OrderID);
-
+            //execute the stored procedure
             DB.Execute("sproc_tblOrder_Delete");
         }
 
         public void ReportByDeliveryAddress(string DeliveryAddress)
         {
+            //filter the record based on a full or partial delivery address
+            //connect to the database
             clsDataConnection DB = new clsDataConnection();
-
+            //send the delivery address parameter to the database
             DB.AddParameter("@DeliveryAddress", DeliveryAddress);
-
+            //execute the stored procedure
             DB.Execute("sproc_tblOrder_FilterByDeliveryAddress");
-
+            //populate the array list with the data table
             PopulateArray(DB);
         }
 
