@@ -94,28 +94,29 @@ namespace Testing4
         [TestMethod]
         public void AddMethodOK()
         {
+            //create an instance of the class we want to create
             clsOrderCollection AllOrders = new clsOrderCollection();
-
+            //create the item of the test data
             clsOrder TestItem = new clsOrder();
-
+            //var to store the primary key
             Int32 PrimaryKey = 0;
-
-            TestItem.OrderID = 10;
+            //set its properties
+            TestItem.OrderID = 1;
             TestItem.DeliveryTime = DateTime.Now.Date;
-            TestItem.DeliveryAddress = "23 RTY CTI ";
+            TestItem.DeliveryAddress = "23 vermalen street ";
             TestItem.Delivery = true;
-            TestItem.ItemQuantity = 3;
+            TestItem.ItemQuantity = 2;
             TestItem.PhoneNumber = 67876543456;
-            TestItem.Notes = "RTUYIK sUGHJL YUIGHKJL";
-
+            TestItem.Notes = "to be delivered at xxx address, around x time";
+            //set this address to the test data
             AllOrders.ThisOrder = TestItem;
-
+            //add the record
             PrimaryKey = AllOrders.Add();
-
+            //set the primary key of the test data
             TestItem.OrderID = PrimaryKey;
-
+            //find the record
             AllOrders.ThisOrder.Find(PrimaryKey);
-
+            //test to see that the two values are the same
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
 
@@ -209,14 +210,17 @@ namespace Testing4
         [TestMethod]
         public void ReportByDeliveryAddressTestDataFound()
         {
+            //create an instance of a filtered data
             clsOrderCollection FilteredOrders = new clsOrderCollection();
 
+            //var to store outcome
             Boolean OK = true;
-
-            FilteredOrders.ReportByDeliveryAddress("23 RTY CTI ");
-
+            //apply an address that does not exist
+            FilteredOrders.ReportByDeliveryAddress("32 vermalen");
+            //check that the correct number of the records are found
             if(FilteredOrders.Count == 2)
             {
+                //check that the first record is 8
                 if(FilteredOrders.OrderList[0].OrderID != 8)
                 {
                     OK = false;
@@ -224,6 +228,7 @@ namespace Testing4
 
                 if(FilteredOrders.OrderList[9].OrderID != 9)
                 {
+                    //check that the second recor is 9
                     OK = false;
                 }
             }
@@ -231,7 +236,7 @@ namespace Testing4
             {
                 OK = false;
             }
-
+            //test to see that there are no record
             Assert.IsTrue(OK);
         }
     }

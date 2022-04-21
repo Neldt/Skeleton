@@ -41,15 +41,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-
+        //capture the Notes
         string Notes = txtNotes.Text;
-
+        //capture the PhoneNumber
         string PhoneNumber = txtPhoneNumber.Text;
-
+        //capture the ItemQuantity
         string ItemQuantity = txtItemQuantity.Text;
-
+        //capture the delivery time
         string DeliveryTime = txtDeliveryTime.Text;
-
+        //capture the deliveryAddress
         string DeliveryAddress = txtDeliveryAddress.Text;
 
         string Error = "";
