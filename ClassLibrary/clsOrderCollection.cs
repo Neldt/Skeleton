@@ -8,7 +8,7 @@ namespace ClassLibrary
     {
         //private data member to the list
         List<clsOrder> mOrderList = new List<clsOrder>();
-
+        //private data member thisOrder
         clsOrder mThisOrder = new clsOrder();
         public List<clsOrder> OrderList
         {
@@ -36,10 +36,12 @@ namespace ClassLibrary
         {
             get
             {
+                //return the private data
                 return mThisOrder;
             }
             set
             {
+                //set the private data
                 mThisOrder = value;
             }
         }
@@ -56,15 +58,17 @@ namespace ClassLibrary
 
         public int Add()
         {
+            //add a new record to the database based on the new value of thisOrder
+            //connect to the database
             clsDataConnection DB = new clsDataConnection();
-
+            //set the parameter for the store procedure
             DB.AddParameter("@Phonenumber", mThisOrder.PhoneNumber);
             DB.AddParameter("@ItemQuantity", mThisOrder.ItemQuantity);
             DB.AddParameter("@DeliveryTime",mThisOrder.DeliveryTime);
             DB.AddParameter("@Delivery",mThisOrder.Delivery);
             DB.AddParameter("@DeliveryAddress",mThisOrder.DeliveryAddress);
             DB.AddParameter("@Notes",mThisOrder.Notes);
-
+            //execute the query returning the primary key value
             return DB.Execute("sproc_tblOrder_Insert");
         }
 
