@@ -80,7 +80,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             clsOrderCollection OrderList = new clsOrderCollection();
 
             //if this is a new record i.e. OrderID != -1 then add the data
-            if(OrderID == -1)
+            if(OrderID != -1)
             {
                 // set the thisOrder property
                 OrderList.ThisOrder = AnOrder;
@@ -131,5 +131,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             txtNotes.Text = AnOrder.Notes;
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderList.aspx");
     }
 }

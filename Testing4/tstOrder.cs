@@ -409,6 +409,20 @@ namespace Testing4
         }
 
         [TestMethod]
+        public void PhoneNumberInvalidData() 
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            String PhoneNumber = "This is not a phone number";
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
         public void ItemQuantityMinLessOne()
         {
             clsOrder AnOrder = new clsOrder();
@@ -490,6 +504,24 @@ namespace Testing4
             Int32 TestItem;
 
             TestItem = 2;
+
+            string ItemQuantity = TestItem.ToString();
+
+            Error = AnOrder.Valid(PhoneNumber, ItemQuantity, DeliveryTime, DeliveryAddress);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinPlusOneToTest()
+        {
+            clsOrder AnOrder = new clsOrder();
+
+            String Error = "";
+
+            Int32 TestItem;
+
+            TestItem = 10;
 
             string ItemQuantity = TestItem.ToString();
 

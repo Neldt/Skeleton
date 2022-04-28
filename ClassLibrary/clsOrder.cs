@@ -158,16 +158,25 @@ namespace ClassLibrary
             DateTime DateTemp;
 
             Int32 ItemAmount;
+            Int64 PhoneNumb;
 
             // Testing the Phone Number section
-            if (phoneNumber.Length <= 6)
+            try
             {
-                Error = Error + "This field should not be empty and have more than 6 digits : ";
-            }
+                PhoneNumb = Convert.ToInt64(phoneNumber);
+                if (phoneNumber.Length <= 6)
+                {
+                    Error = Error + "This field should not be empty and have more than 6 digits : ";
+                }
 
-            if (phoneNumber.Length > 18)
+                if (phoneNumber.Length > 18)
+                {
+                    Error = Error + "should not be longer than 23 digits : ";
+                }
+            }
+            catch
             {
-                Error = Error + "should not be longer than 23 digits : ";
+                Error = Error + "Only Int to be insert";
             }
 
             // Testing the Item quantity section
@@ -181,7 +190,7 @@ namespace ClassLibrary
 
                 if (ItemAmount > 16)
                 {
-                    Error = Error + "Sorry, Cannot purchase mor than 16 Items";
+                    Error = Error + "Sorry, Cannot purchase more than 16 Items";
                 }
             }
             catch

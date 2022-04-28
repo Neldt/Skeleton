@@ -51,7 +51,7 @@
         <asp:Label ID="lblError" runat="server" width="198px"></asp:Label>
         <p>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" width="86px" />
-            <asp:Button ID="btnCancel" runat="server" style="margin-left: 28px" Text="Cancel" width="86px" />
+            <asp:Button ID="btnCancel" runat="server" style="margin-left: 28px" Text="Cancel" width="86px" OnClick="btnCancel_Click" />
         </p>
     </form>
 </body>
