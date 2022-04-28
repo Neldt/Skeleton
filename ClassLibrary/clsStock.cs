@@ -25,12 +25,23 @@ namespace ClassLibrary
         public string ItemDescription { get; set; }
         public int ItemQuantity { get; set; }
         public double Price { get; set; }
-        public DateTime DateAdded { get; set; }
+        private DateTime mDateAdded;
+        public DateTime DateAdded
+        {
+            get
+            {
+                return mDateAdded;
+            }
+            set
+            {
+                mDateAdded = value;
+            }
+        }
         public bool Find(int itemNo)
         {
             //set the private data members to the test data value
-            //mItemNo = 24;
-            //mDateAdded = Convert.ToDateTime("16/9/2015");
+            mItemNo = 24;
+            mDateAdded = Convert.ToDateTime("16/9/2015");
             //always return true
             return true;
         }
