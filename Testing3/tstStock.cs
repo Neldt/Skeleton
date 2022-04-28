@@ -156,6 +156,20 @@ namespace Testing3
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void TestItemDescriptiopnFound()
+        {
+            clsStock AnItem = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 24;
+            Found = AnItem.Find(ItemNo);
+            if (AnItem.ItemDescription != "ItemDescription")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
 
     }
 

@@ -22,7 +22,18 @@ namespace ClassLibrary
                 mItemNo = value;
             }
         }
-        public string ItemDescription { get; set; }
+        private String mItemDescription;
+        public string ItemDescription
+        {
+            get
+            {
+                return mItemDescription;
+            }
+            set
+            {
+                mItemDescription = value;
+            }
+        }
         public int ItemQuantity { get; set; }
         public double Price { get; set; }
         private DateTime mDateAdded;
@@ -42,6 +53,7 @@ namespace ClassLibrary
             //set the private data members to the test data value
             mItemNo = 24;
             mDateAdded = Convert.ToDateTime("16/9/2015");
+            mItemDescription = "ItemDescription";
             //always return true
             return true;
         }
