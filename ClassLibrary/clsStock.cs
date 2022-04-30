@@ -4,8 +4,18 @@ namespace ClassLibrary
 {
     public class clsStock
     {
+        //private bool mAvailable;
         public bool Available { get; set; }
-
+        /*{
+            get
+            {
+                return mAvailable;
+            }
+            set
+            {
+                mAvailable = value;
+            }
+        }*/
         //ItemNo private member variable
         private Int32 mItemNo;
         //ItemNo public property
@@ -34,8 +44,30 @@ namespace ClassLibrary
                 mItemDescription = value;
             }
         }
-        public int ItemQuantity { get; set; }
+        private Int32 mItemQuantity;
+        public Int32 ItemQuantity
+        {
+            get
+            {
+                return mItemQuantity;
+            }
+            set
+            {
+                mItemQuantity = value;
+            }
+        }
+        //private double mPrice;
         public double Price { get; set; }
+        {
+            /*get
+            {
+                return mPrice;
+            }
+            set
+            {
+                mPrice = value;
+            }*/
+        }
         private DateTime mDateAdded;
         public DateTime DateAdded
         {
@@ -48,12 +80,15 @@ namespace ClassLibrary
                 mDateAdded = value;
             }
         }
-        public bool Find(int itemNo)
+        public bool Find(int ItemNo)
         {
             //set the private data members to the test data value
             mItemNo = 24;
             mDateAdded = Convert.ToDateTime("16/9/2015");
             mItemDescription = "ItemDescription";
+            mItemQuantity = "ItemQuantity";
+            //mPrice = "Price";
+            //mAvailable = "Available";
             //always return true
             return true;
         }
