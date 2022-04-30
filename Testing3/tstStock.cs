@@ -12,6 +12,9 @@ namespace Testing3
         [TestMethod]
         public void InstanceOK()
         {
+            //v00egd00001l.lec-admin.dmu.ac.uk
+            //p2559549 
+            //Imat1113
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
             //test to see that it exists
@@ -170,7 +173,62 @@ namespace Testing3
             }
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void TestItemQuantityFound()
+        {
+            clsStock AnItem = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 24;
+            Found = AnItem.Find(ItemNo);
+            if (AnItem.ItemQuantity != "ItemQuantity")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
 
+        /*[TestMethod]
+        public void TestPriceFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnItem = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(lets assume)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ItemNo = 24;
+            //invoke the method
+            Found = AnItem.Find(ItemNo);
+            //check the Price
+            if (AnItem.Price != "Price")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        /*[TestMethod]
+        public void TestAvailableFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnItem = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(lets assume)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ItemNo = 24;
+            //invoke the method
+            Found = AnItem.Find(ItemNo);
+            //check the Availibilty
+            if (AnItem.Available != "Available")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }*/
     }
-
 }
