@@ -181,14 +181,14 @@ namespace Testing3
             Boolean OK = true;
             Int32 ItemNo = 24;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemQuantity != "ItemQuantity")
+            if (AnItem.ItemQuantity != 4545)
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void TestPriceFound()
         {
             //create an instance of the class we want to create
@@ -202,14 +202,14 @@ namespace Testing3
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the Price
-            if (AnItem.Price != "Price")
+            if (AnItem.Price != 5.5)
             {
                 OK = false;
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
-        /*[TestMethod]
+        [TestMethod]
         public void TestAvailableFound()
         {
             //create an instance of the class we want to create
@@ -223,12 +223,12 @@ namespace Testing3
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the Availibilty
-            if (AnItem.Available != "Available")
+            if (AnItem.Available != true)
             {
                 OK = false;
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
-        }*/
+        }
     }
 }
