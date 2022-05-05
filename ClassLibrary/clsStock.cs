@@ -114,5 +114,46 @@ namespace ClassLibrary
             }
 
         }
+
+        public string Valid(string itemDescription, string itemQuantity, string dateAdded, string price)
+        {
+            //create a string variable to store the error
+            string error = "";
+
+            double thePrice ;
+            //if the ItemDescription is blank
+            if (itemDescription.Length <=0)
+            {
+                //record the error
+                error = error + "the ItemDescription may not be blank :";
+            }
+
+            if(itemDescription.Length >200)
+            {
+                error = error + "please insert a brief description :";
+            }
+
+            try
+            {
+                thePrice = Convert.ToDouble(price);
+                if (thePrice < 39.99)
+                {
+                    error = error + "This field should not be empty and have more than 6 digits : ";
+                }
+
+                if (thePrice >= 200001.00)
+                {
+                    error = error + "should not be longer than 23 digits : ";
+                }
+            }
+            catch
+            {
+                error = error + "Only digits to be insert";
+            }
+
+
+            //return any error messages
+            return error;
+        }  
     }
 }

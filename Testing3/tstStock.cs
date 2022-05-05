@@ -7,6 +7,12 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        //good test data for Valid
+        string itemDescription = " mongoose bike";
+        string itemQuantity = Convert.ToString(32);
+        string dateAdded = DateTime.Now.Date.ToString();
+        string price = Convert.ToString(3.0);
+
         public bool Found { get; private set; }
 
         [TestMethod]
@@ -111,7 +117,7 @@ namespace Testing3
             //boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             //invoke the method
             Found = AnStock.Find(ItemNo);
             //test to see if the results is true
@@ -127,11 +133,11 @@ namespace Testing3
             //boolean variable to record if data is OK(lets assume)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the Item no
-            if (AnItem.ItemNo != 24)
+            if (AnItem.ItemNo != 2)
             {
                 OK = false;
             }
@@ -148,11 +154,11 @@ namespace Testing3
             //boolean variable to record if data is OK (lets say it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the property
-            if (AnItem.DateAdded != Convert.ToDateTime("16/09/2015"))
+            if (AnItem.DateAdded != Convert.ToDateTime("16/12/2008"))
             {
                 OK = false;
             }
@@ -165,9 +171,9 @@ namespace Testing3
             clsStock AnItem = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemDescription != "ItemDescription")
+            if (AnItem.ItemDescription != "Mongoose Bike ")
             {
                 OK = false;
             }
@@ -179,9 +185,9 @@ namespace Testing3
             clsStock AnItem = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemQuantity != 4545)
+            if (AnItem.ItemQuantity != 52)
             {
                 OK = false;
             }
@@ -198,11 +204,11 @@ namespace Testing3
             //boolean variable to record if data is OK(lets assume)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the Price
-            if (AnItem.Price != 5.5)
+            if (AnItem.Price != 1500)
             {
                 OK = false;
             }
@@ -219,16 +225,238 @@ namespace Testing3
             //boolean variable to record if data is OK(lets assume)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ItemNo = 24;
+            Int32 ItemNo = 2;
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the Availibilty
-            if (AnItem.Available != true)
+            if (AnItem.Available != false)
             {
                 OK = false;
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStock AnItem = new clsStock();
+            //string variable to store any error message
+            String error = "";
+            //invoke the method
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price );
+            //test to see that the result is correct
+            Assert.AreNotEqual(error, "");
+        }
+        [TestMethod]
+        public void ItemDescriptionMinLessOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, ""); //using NotEqual because we want to see that there is an error
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMinBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(1, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMinPlusOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(2, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMaxLessOneBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(199, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMaxBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(200, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMaxPlusOneBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(201, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMidBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(100, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionExtremMaxBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            itemDescription = "";
+            itemDescription = itemDescription.PadRight(250, 'a');
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinLessOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 38.99;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 39.99;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinPlusOneBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 40.99;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 200000.00;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxJustBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 200000.99;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxPlusOneBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 200001.00;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceMidBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 100000.00;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceExtremeMaxBoundary()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+
+            double aPrice = 10000000.00;
+
+            price = aPrice.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void PriceInvalidDataType()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            String name = "Joe";
+
+            price = name;
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
         }
     }
 }
