@@ -8,6 +8,13 @@ namespace Testing5
     [TestClass]
     public class tstSupplier
     {
+       
+        string SupplierFeedback = "5";
+        string SupplierProduct = "orange Bike";
+        string Price = "200";
+        string DeliveryDate = DateTime.Now.Date.ToString();
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -148,8 +155,119 @@ namespace Testing5
             }
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void ValidMeMethodOK()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct,Price,DeliveryDate);
+        }
+        [TestMethod]
+        public void DeliveryDateExtremeMin()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DeliveryDate = TestDate.ToString();
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryDateMinLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DeliveryDate = TestDate.ToString();
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryDateMin()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DeliveryDate = TestDate.ToString();
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryDateMinPlusOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateAdded = TestDate.ToString();
+            error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(error, "");
+        }
+        [TestMethod]
+
+        public void DeliveryDateExtremeMax()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DeliveryDate = TestDate.ToString();
+            Error = AnSupplier.Valid(SupplierFeedback,SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryDateInvalidData()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string DeliveryDate = "This is not a date! : ";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierProductMinLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierProduct = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        public void SupplierProductMin()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierProduct = "a";
+            Error = AnSupplier.Valid(SupplierProduct, SupplierFeedback, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+
+        public void SupplierProductMinPlusOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "aa";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+        }
+       
+
+
+
+
+
     }
 }
+
 
 
 
