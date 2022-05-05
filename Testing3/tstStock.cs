@@ -158,7 +158,7 @@ namespace Testing3
             //invoke the method
             Found = AnItem.Find(ItemNo);
             //check the property
-            if (AnItem.DateAdded != Convert.ToDateTime("16/12/2008"))
+            if (AnItem.DateAdded != Convert.ToDateTime("16/12/2008 "))
             {
                 OK = false;
             }
@@ -458,5 +458,191 @@ namespace Testing3
             error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
             Assert.AreNotEqual(error, "");
         }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            //- 100 years
+            testDate = testDate.AddYears(-100);
+            string dateAdded = testDate.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate = testDate.AddDays(-1);
+            string dateAdded = testDate.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            string dateAdded = testDate.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate = testDate.AddDays(1);
+            string dateAdded = testDate.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            // 10 years
+            testDate = testDate.AddYears(10);
+            string dateAdded = testDate.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedInvalidData()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            string dateAdded = "this is not a date!";
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+        [TestMethod]
+        public void ItemQuantityMinLessOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            Int32 TestItem;
+            TestItem = 0;
+            itemQuantity = TestItem.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMaxPlusOne()
+        {
+            clsStock AnItem = new clsStock();
+            String error = "";
+            Int32 TestItem;
+            TestItem = 17;
+            itemQuantity = TestItem.ToString();
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMaxLessOne()
+        {
+            clsStock AnItem = new clsStock();
+
+            String error = "";
+
+            Int32 TestItem;
+
+            TestItem = 4999;
+
+            itemQuantity = TestItem.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinBoundary()
+        {
+            clsStock AnItem = new clsStock();
+
+            String error = "";
+
+            Int32 TestItem;
+
+            TestItem = 1;
+
+            itemQuantity = TestItem.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinPlusOne()
+        {
+            clsStock AnItem = new clsStock();
+
+            String error = "";
+
+            Int32 TestItem;
+
+            TestItem = 2;
+
+            itemQuantity = TestItem.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityMinLessOneItem()
+        {
+            clsStock AnItem = new clsStock();
+
+            String error = "";
+
+            Int32 TestItem;
+
+            TestItem = 0;
+
+            itemQuantity = TestItem.ToString();
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityInvalidData()
+        {
+            clsStock AnItem = new clsStock();
+
+            String error = "";
+
+            itemQuantity = "This is not a number";
+
+            error = AnItem.Valid(itemDescription, itemQuantity, dateAdded, price);
+
+            Assert.AreNotEqual(error, "");
+        }
+
     }
 }
