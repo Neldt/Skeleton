@@ -99,6 +99,50 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string supplierFeedback, string supplierProduct, string price, string DeliveryDate)
+        {
+            string Error = "";
+            DateTime DateTemp;
+            try
+            {
+                DateTemp = Convert.ToDateTime(DeliveryDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past";
+
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "The Date was not a valid date : ";
+            }
+            if (supplierFeedback.Length == 0)
+            {
+                Error = Error + "The Supplier Feedback may not be blank : ";
+            }
+
+            
+            if (supplierProduct.Length == 0)
+            {
+                Error = Error + " The product may not be empty";
+            }
+            return Error;
+
+        
+       
+        }
     }
 }
-    
+
+
+
+
+
+
+
