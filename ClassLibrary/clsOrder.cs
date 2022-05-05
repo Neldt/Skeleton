@@ -176,7 +176,7 @@ namespace ClassLibrary
             }
             catch
             {
-                Error = Error + "Only Int to be insert";
+                Error = Error + "Only digits to be insert";
             }
 
             // Testing the Item quantity section
