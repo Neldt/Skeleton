@@ -120,15 +120,19 @@ namespace ClassLibrary
             //create a string variable to store the error
             string error = "";
 
-            double thePrice ;
+            DateTime dateNow;
+
+            Int32 theItem;
+
+            double thePrice;
             //if the ItemDescription is blank
-            if (itemDescription.Length <=0)
+            if (itemDescription.Length <= 0)
             {
                 //record the error
                 error = error + "the ItemDescription may not be blank :";
             }
 
-            if(itemDescription.Length >200)
+            if (itemDescription.Length > 200)
             {
                 error = error + "please insert a brief description :";
             }
@@ -151,9 +155,48 @@ namespace ClassLibrary
                 error = error + "Only digits to be insert";
             }
 
+            try
+            {
+                //copy the dateAdded value to the dateTemp variable
+                dateNow = Convert.ToDateTime(dateAdded);
+                if (dateNow < DateTime.Now.Date)
+                {
+                    error = error + "The date cannot be in the past : ";
+                }
+
+                if (dateNow > DateTime.Now.Date)
+                {
+                    error = error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                error = error + "The date was not a valid date : ";
+            }
+
+            try
+            {
+                theItem = Convert.ToInt32(itemQuantity);
+                if (theItem <= 0)
+                {
+                    error = error + "Item can not be zero : ";
+                }
+
+                if (theItem > 5000)
+                {
+                    error = error + "Sorry, Cannot purchase more than 16 Items";
+                }
+            }
+            catch
+            {
+                error = error + "Only Int to be insert";
+            }
 
             //return any error messages
             return error;
-        }  
+
+        }
+
+        
     }
 }
