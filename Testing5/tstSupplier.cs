@@ -26,7 +26,7 @@ namespace Testing5
         public void StockPropertyOK()
         {
             clsSupplier AnSupplier = new clsSupplier();
-            Boolean TestData = true;
+            String TestData = "1";
             AnSupplier.Stock = TestData;
             Assert.AreEqual(AnSupplier.Stock, TestData);
         }
@@ -121,7 +121,7 @@ namespace Testing5
             Boolean OK = true;
             Int32 SupplierId = 1;
             Found = AnSupplier.Find(SupplierId);
-            if (AnSupplier.DeliveryDate != Convert.ToDateTime("15/05/2022"))
+            if (AnSupplier.DeliveryDate != Convert.ToDateTime("05/05/2022"))
             {
                 OK = false;
             }
@@ -345,7 +345,7 @@ namespace Testing5
             string SupplierFeedBack = "";
             SupplierFeedback = SupplierFeedBack.PadRight(49, '1');
             Error = AnSupplier.Valid(SupplierFeedBack, SupplierProduct, Price, DeliveryDate);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
         [TestMethod]

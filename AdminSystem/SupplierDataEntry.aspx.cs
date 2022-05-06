@@ -16,32 +16,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsSupplier AnSupplier = new clsSupplier();
-        AnSupplier.SupplierProduct = txtSupplierProduct.Text;
-        Session["AnSupplier"] = AnSupplier;
-        Response.Redirect("SupplierViewer.aspx");
+        int SupplierId = Convert.ToInt32(txtSupplierId.Text);
+        string SupplierFeedback = txtSupplierFeedback.Text;
+        string Price = txtSupplierPrice.Text;
+        string SupplierProducts = txtSupplierProduct.Text;
+        string DeliveryDate = txtDeliveryDate.Text;
+        string Stock = txtStock.Text;
+        string Error = "";
+        Error = AnSupplier.Valid(SupplierFeedback, SupplierProducts, Price, DeliveryDate);
+        if (Error == "")
+        {
+            AnSupplier.SupplierId = Convert.ToInt32(SupplierId);
+            AnSupplier.SupplierProduct = SupplierProducts;
+            AnSupplier.Price = Convert.ToInt32(Price);
+            AnSupplier.SupplierFeedback = Convert.ToInt32(SupplierFeedback);
+            AnSupplier.DeliveryDate = Convert.ToDateTime(DeliveryDate);
+            AnSupplier.Stock = Convert.ToString(Stock);
+            Session["AnSupplier"] = AnSupplier;
+            Response.Write("SupplierViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-        clsSupplier AnSupplier = new clsSupplier();
-        Int32 SupplierId;
-        Boolean Found = false;
-        SupplierId = Convert.ToInt32(txtSupplierId.Text);
-        Found = AnSupplier.Find(SupplierId);
-        if (Found == true)
-        {
-            txtSupplierId.Text = AnSupplier.SupplierId.ToString();
-            txtSupplierFeedback.Text = AnSupplier.SupplierFeedback.ToString();
-            txtSupplierPrice.Text = AnSupplier.Price.ToString();
-            txtSupplierProduct.Text = AnSupplier.SupplierProduct;
-            txtDeliveryDate.Text = AnSupplier.DeliveryDate.ToString();
-            
 
-
-
-
-
-
-        }
     }
 }
+
+
+        
+
+
+
+
+
+        

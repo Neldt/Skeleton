@@ -30,7 +30,8 @@
             <asp:TextBox ID="txtDeliveryDate" runat="server"></asp:TextBox>
         </p>
         <p>
-            <asp:CheckBox ID="chkStock" runat="server" Text="In Stock" width="91px" />
+            <asp:Label ID="lblStock" runat="server" Text="In Stock"></asp:Label>
+            <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
         </p>
             <asp:Label ID="lblError" runat="server"></asp:Label>
         <p>
