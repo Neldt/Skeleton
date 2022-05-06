@@ -259,7 +259,128 @@ namespace Testing5
             Assert.AreEqual(Error, "");
 
         }
-       
+        [TestMethod]
+        public void PriceMinLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string Price = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void PriceMin()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string Price = "a";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMinPlusOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+
+        }
+        [TestMethod]
+        public void PriceMaxLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string Price = "11111111";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        
+        
+        }
+        [TestMethod]
+        public void PriceMax()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string Price = "111111111";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void SupplierFeedbackMinLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedback = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SupplierFeedbackMin()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedback = "a";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void SupplierFeedbackMinPlusOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedBack = "aa";
+            Error = AnSupplier.Valid(SupplierFeedBack, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void SupplierFeedbackMaxLessOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedBack = "";
+            SupplierFeedback = SupplierFeedBack.PadRight(49, '1');
+            Error = AnSupplier.Valid(SupplierFeedBack, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void SupplierFeedbackMax()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedback = "";
+            SupplierFeedback = SupplierFeedback.PadRight(50, '1');
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void SupplierFeedbackMaxPlusOne()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedback = "";
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SupplierFeedbackMid()
+        {
+            clsSupplier AnSupplier = new clsSupplier();
+            string Error = "";
+            string SupplierFeedback = "";
+            SupplierFeedback = SupplierFeedback.PadRight(25, '1');
+            Error = AnSupplier.Valid(SupplierFeedback, SupplierProduct, Price, DeliveryDate);
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+
 
 
 
