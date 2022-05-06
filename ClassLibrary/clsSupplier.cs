@@ -8,10 +8,10 @@ namespace ClassLibrary
         private Int32 mSupplierFeedback;
         private Int32 mSupplierId;
         private Decimal mPrice;
-        private Boolean mStock;
+        private String mStock;
         private String mSupplierProduct;
         private DateTime mDeliveryDate;
-        public bool Stock
+        public string Stock
         {
             get
             {
@@ -87,9 +87,9 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
-                mPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["SupplierPrice"]);
-                mDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SupplierDeliveryDate"]);
-                mStock = Convert.ToBoolean(DB.DataTable.Rows[0]["SupplierStock"]);
+                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierPrice"]);
+                mDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[0]["DeliveryDate"]);
+                mStock = Convert.ToString(DB.DataTable.Rows[0]["Stock"]);
                 mSupplierFeedback = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierFeedback"]);
                 mSupplierProduct = Convert.ToString(DB.DataTable.Rows[0]["SupplierProduct"]);
                 return true;
