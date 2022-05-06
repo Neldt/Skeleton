@@ -345,7 +345,7 @@ namespace Testing5
             string SupplierFeedBack = "";
             SupplierFeedback = SupplierFeedBack.PadRight(49, '1');
             Error = AnSupplier.Valid(SupplierFeedBack, SupplierProduct, Price, DeliveryDate);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
         [TestMethod]
