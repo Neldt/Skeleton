@@ -15,26 +15,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void BtnCancel_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("StockViewer.aspx");
     }
 
     protected void BtnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsStock
         clsStock AnStock = new clsStock();
-        //capture the item description
-        AnStock.ItemDescription = txtItemDescription.Text;
-        //store the address in the session object
-        Session["AnStock"] = AnStock;
-        //navigate to the viewer page
-        Response.Redirect("StockViewer.aspx");
+        //string values for valid method
+        string ItemDescription = txtItemDescription.Text;
+        string ItemQuantity = txtItemQuantity.Text;
+        string DateAdded = txtDateAdded.Text;
+        string Price = txtPrice.Text;
+        //send string values to validate method
+        string error = "";
+        error = AnStock.Valid(ItemDescription, ItemQuantity, DateAdded, Price);
+        if (error == "")
 
-        
-
-        
-
+        {
+            //capture the ItemDescription
+            AnStock.ItemDescription = ItemDescription;
+            //capture the Item Quantity
+            AnStock.ItemQuantity = Convert.ToInt32(ItemQuantity);
+            //capture the DateAdded
+            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
+            //capture the price
+            AnStock.Price = Convert.ToInt32(Price);
+            //store the address in the session object
+            Session["AnStock"] = AnStock;
+            //navigate to the viewer page
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = error;
+        }
     }
-    
 
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
